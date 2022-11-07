@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useModal } from "mui-modal-provider";
+import "./App.css";
+import { Button } from "@mui/material";
+import DisplayToastDialog from "./dialogs/DisplayToastDialog";
+import StepperDialog from "./dialogs/StepperDialog";
+// import useModal from './providerTest/use-modal'
 
 function App() {
+  const { showModal } = useModal();
+
+  const handleClick = () => {
+    console.log("hi");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Button
+        onClick={() =>
+          showModal(DisplayToastDialog, {
+            title: "Create A Toast Message",
+            handleClick: handleClick,
+          })
+        }
+      >
+        Click Me
+      </Button>
+      <Button
+        onClick={() =>
+          showModal(StepperDialog, {
+            title: "Stepper Two",
+          })
+        }
+      >
+        Step Me Two
+      </Button>
     </div>
   );
 }
